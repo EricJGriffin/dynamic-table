@@ -1,0 +1,21 @@
+<div *ngIf="customers$ | async as customers; else loading">
+  <p-table [value]="customers" selectionMode="single" (onRowSelect)="onRowSelect($event)">
+    <ng-template #header>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-customer>
+      <tr [pSelectableRow]="customer">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>
